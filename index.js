@@ -34,6 +34,7 @@ app.use(
       'http://127.0.0.1:3000',
       'http://localhost:5000',
       'http://127.0.0.1:5000',
+      process.env.FRONTEND_URL,
     ],
     credentials: true,
   })
@@ -59,7 +60,6 @@ app.post('/upload-by-link', async (req, res) => {
   const url = await uploadImage(link);
   res.json(url);
 });
-
 
 const photosMiddleware = multer({ dest: '/tmp' });
 app.post('/upload', photosMiddleware.array('photos', 100), async (req, res) => {
